@@ -26,7 +26,7 @@
                     <li class="nav-item"><a href="/create_room" class="nav-link text-light fs-5">Create Room</a></li>
                     <li class="nav-item"><a href="/logout" class="nav-link text-light fs-5">Logout {{ current_user.username }} </a></li>
                     {% else %}
-                    <li class="nav-item"><a href="/login" class="nav-link text-light fs-5">Login</a></li>
+                    <li class="nav-item"><a href="/login" class="nav-link text-light fs-5 ">Login</a></li>
                     <div class="divider bg-light"></div>
                     <li class="nav-item"><a href="/signup" class="nav-link text-light fs-5">Signup</a></li>
                     {% endif %}
@@ -34,25 +34,25 @@
         </div>
     </div>
 </nav>
-<div class="mx-auto p-5 d-flex mt-5 flex-column bg-light text-dark shadow-lg rounded main-cont gap-2">
+<div class="mx-auto p-5 d-flex mt-5 flex-column bg-light text-dark  rounded main-cont gap-2">
 {% block main %}
 {% endblock %}
 </div>
-<footer class="d-flex flex-wrap justify-content-between align-items-center p-5 mt-5 mx-5 bg-dark border-0">
-    <div class="col-md-4 d-flex align-items-center">
-      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
-        <i class="bi bi-broadcast"></i>
-      </a>
-      <span class="text-muted">© 2021 Company, Inc</span>
-    </div>
+<!--<footer class="d-flex flex-wrap justify-content-between align-items-center p-5 mt-5 mx-5 bg-dark border-0">-->
+<!--    <div class="col-md-4 d-flex align-items-center">-->
+<!--      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">-->
+<!--        <i class="bi bi-broadcast"></i>-->
+<!--      </a>-->
+<!--      <span class="text-muted">© 2021 Company, Inc</span>-->
+<!--    </div>-->
 
-    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
-      <li class="ms-3"><i class="bi bi-twitter"></i></li>
-      <li class="ms-3"><i class="bi bi-instagram"></i></li>
-      <li class="ms-3"><i class="bi bi-youtube"></i></li>
+<!--&lt;!&ndash;    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">&ndash;&gt;-->
+<!--&lt;!&ndash;      <li class="ms-3"><i class="bi bi-twitter"></i></li>&ndash;&gt;-->
+<!--&lt;!&ndash;      <li class="ms-3"><i class="bi bi-instagram"></i></li>&ndash;&gt;-->
+<!--&lt;!&ndash;      <li class="ms-3"><i class="bi bi-youtube"></i></li>&ndash;&gt;-->
 
-    </ul>
-  </footer>
+<!--&lt;!&ndash;    </ul>&ndash;&gt;-->
+<!--  </footer>-->
 </section>
 </body>
 </html>

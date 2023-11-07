@@ -57,3 +57,8 @@ html,
 	margin-left: 50%;
 	color:var(--bs-dark);
 }
+
+.button-room{
+    padding:20px;
+    border-radius:8px;
+}
