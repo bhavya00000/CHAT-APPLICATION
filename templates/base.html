@@ -5,6 +5,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,400;1,100&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="{{url_for('static', filename='custom.css')}}">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -13,22 +19,26 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-<section class="bg-dark text-light full-height">
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<section class="bg- text-light full-height">
+<nav class="navbar navbar-expand-lg navbar-dark bg-info">
     <div class="container-fluid p-3 px-5 mx-5">
-        <a href="/" class="navbar-brand text-primary fs-1">My Chat APP</a>
+        <a href="/" class="navbar-brand text-light fs-1">My Chat APP</a>
         <button class="navbar-toggler primary" type="button" data-bs-toggle="collapse" data-bs-target="#responsiveNav">
             <span class="navbar-toggler-icon text-light"></span>
         </button>
         <div class="collapse navbar-collapse " id="responsiveNav">
                 <ul class="navbar-nav ms-auto">
                     {% if current_user.is_authenticated %}
-                    <li class="nav-item"><a href="/create_room" class="nav-link text-light fs-5">Create Room</a></li>
-                    <li class="nav-item"><a href="/logout" class="nav-link text-light fs-5">Logout {{ current_user.username }} </a></li>
+                    
+                    <button class="rounded-pill m-1"><li class="nav-item"><a href="/create_room" class="nav-link text-dark fs-5">Create Room</a></li></button>
+                    
+                    <button class="rounded-pill m-1"><li class="nav-item"><a href="/logout" class="nav-link text-dark fs-5">Logout {{ current_user.username }} </a></li></button>
                     {% else %}
-                    <li class="nav-item"><a href="/login" class="nav-link text-light fs-5 ">Login</a></li>
+            
+                    <button class=" rounded-pill m-1 "><li class="nav-item"><a href="/login" class="nav-link text-dark fs-5 ">Login</a></li></button>
                     <div class="divider bg-light"></div>
-                    <li class="nav-item"><a href="/signup" class="nav-link text-light fs-5">Signup</a></li>
+                    
+                    <button class=" rounded-pill m-1" ><li class="nav-item"><a href="/signup" class="nav-link text-dark fs-5">Signup</a></li></button>
                     {% endif %}
                 </ul>
         </div>
@@ -48,7 +58,7 @@
 
 <!--&lt;!&ndash;    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">&ndash;&gt;-->
 <!--&lt;!&ndash;      <li class="ms-3"><i class="bi bi-twitter"></i></li>&ndash;&gt;-->
-<!--&lt;!&ndash;      <li class="ms-3"><i class="bi bi-instagram"></i></li>&ndash;&gt;-->
+<!-- &lt;!&ndash;      <li class="ms-3"><i class="bi bi-instagram"></i></li>&ndash;&gt; -->
 <!--&lt;!&ndash;      <li class="ms-3"><i class="bi bi-youtube"></i></li>&ndash;&gt;-->
 
 <!--&lt;!&ndash;    </ul>&ndash;&gt;-->

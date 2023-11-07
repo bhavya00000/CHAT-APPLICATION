@@ -1,11 +1,11 @@
 {% extends "base.html"%}
 
 {% block main %}
-<h1>Create Room</h1>
+<h1 class="text-center">Create Room</h1>
 {% if message %}
 <h3>{{message}}</h3>
 {% endif %}
-<form method='post'>
+<form method='post' class="d-flex align-items-center justify-content-center flex-column">
     <div>
         <label class="m-2">Room Name:</label>
         <input type="text" name="room_name">
@@ -14,6 +14,6 @@
         <label class="m-3">Members:</label>
         <input type="text" name="members">
     </div>
-    <button class="p-1.5 m-3 rounded" type="submit">Submit</button>
+    <button class="p-2 m-3 rounded bg-info" type="submit">Submit</button>
 </form>
 {% endblock %}

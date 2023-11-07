@@ -5,6 +5,7 @@
 
 * {
 	margin: 0;
+	font-family: 'IBM Plex Mono', monospace;
 }
 
 html,
@@ -25,6 +26,7 @@ html,
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+
 }
 
 .messages div {
@@ -38,10 +40,11 @@ html,
 	width: max-content;
 	gap: 0.5rem;
 	align-self: flex-end;
+	
 }
 
 .messages div p {
-	margin: 0;
+	
 	font-size: var(--bs-body-font-size);
 }
 
@@ -49,16 +52,15 @@ html,
 	background-color: var(--bs-dark);
 	color: var(--bs-light);
 	width: 50%;
+	
+
 }
 
 .messages .self {
-	background-color: var(--bs-primary);
+	background-color: var(--bs-info);
 	width: 50%;
-	margin-left: 50%;
+	margin-right: 50%;
 	color:var(--bs-dark);
 }
 
-.button-room{
-    padding:20px;
-    border-radius:8px;
-}
+
