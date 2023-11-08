@@ -1,47 +1,23 @@
-import base64
-
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES, PKCS1_OAEP
 from Crypto.Signature import pkcs1_15
 from Crypto.Hash import SHA256
-from cryptography.hazmat.primitives import serialization
-from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives.asymmetric import rsa
-from cryptography.hazmat.primitives.asymmetric import padding
-from cryptography.hazmat.primitives import hashes
 
 
 # RSA
 def generate_rsa_keys():
-    private_key = rsa.generate_private_key(
-        public_exponent=65537, key_size=2048
-    )
-
-    private_pem = private_key.private_bytes(
-        encoding=serialization.Encoding.PEM,
-        format=serialization.PrivateFormat.PKCS8,
-        encryption_algorithm=serialization.NoEncryption()
-    )
-
-    public_key = private_key.public_key()
-    public_pem = public_key.public_bytes(
-        encoding=serialization.Encoding.PEM,
-        format=serialization.PublicFormat.SubjectPublicKeyInfo
-    )
-
-    return public_pem, private_pem
-
+    key = RSA.generate(2048)
+    private_key = key.export_key()
+    public_key = key.publickey().export_key()
+    return public_key, private_key
 
 
 def encrypt_rsa(aes_key, public_key):
-    public_key = serialization.load_pem_public_key(public_key, backend=default_backend())
-    aes_key_bytes = aes_key.encode('utf-8')
-    enc_aes_key = public_key.encrypt(aes_key_bytes, padding.OAEP(
-        mgf=padding.MGF1(algorithm=hashes.SHA256()),
-        algorithm=hashes.SHA256(),
-        label=None
-    ))
+    recipient_key = RSA.import_key(public_key)
+    cipher_rsa = PKCS1_OAEP.new(recipient_key)
+    enc_aes_key = cipher_rsa.encrypt(aes_key)
+    # enc_aes is a str type variable
     return enc_aes_key.decode('latin-1')
 
 
@@ -60,28 +36,10 @@ def generate_aes_key():
 
 
 def encrypt_aes(message, aes_key):
-    if len(aes_key) != 16:
-        raise ValueError("AES key must be 16 bytes long")
-
-    # Padding to make the message length a multiple of 16
-    padding_length = 16 - (len(message) % 16)
-    message += bytes([padding_length] * padding_length)
-
-    cipher_text = bytearray()
-    previous_block = aes_key
-
-    for i in range(0, len(message), 16):
-        block = message[i:i + 16]
-        xor_result = bytes([a ^ b for a, b in zip(block, previous_block)])
-        cipher_text.extend(xor_result)
-        previous_block = xor_result
-
-    nonce = get_random_bytes(16)
-    cipher = AES.new(aes_key, AES.MODE_EAX, nonce=nonce)
-    ciphertext, tag = cipher.encrypt_and_digest(bytes(cipher_text))
-
-    enc_mssge = [nonce, tag, ciphertext]
-
+    cipher = AES.new(aes_key, AES.MODE_EAX)
+    ciphertext, tag = cipher.encrypt_and_digest(message.encode())
+    enc_mssge = [x for x in (cipher.nonce, tag, ciphertext)]
+    # enc_mssge is a lists
     return enc_mssge
 
 
@@ -114,10 +72,4 @@ def rsa_ds_verifier(aes_key, signature, rsa_pub_key):
 
 
 def sha_md_create(value):
-    # Create a new SHA-256 hash object
-    sha256_hash = SHA256.new()
-
-    # Update the hash object with the bytes of the input value
-    sha256_hash.update(str(value).encode())
-
-    return sha256_hash
+    return SHA256.new(str(value).encode())
